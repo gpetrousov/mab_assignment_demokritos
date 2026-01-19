@@ -1,6 +1,4 @@
 # Notes
-
-## About
 - Presents algorithms for online learning in sponsored search auction settings.
 - Algorithms don't know the item valuation.
 - Agorithms achieve almost full information regret rates.
@@ -20,7 +18,6 @@
 2. WIN-EXP algorithm - based on EXP3
 
 
-
 ## Multi Armed Bandit problem - MAB
 - You have multiple slot machines
 - Each machine has a different, unknown pay-out probability
@@ -33,6 +30,31 @@
 ## Online learning
 - Data is presented sequentially from a continuous stream of data.
 
+
 ## Sponsored search auction
 - The results or a search are a sponsored by 3rd parties.
 
+
+# 5-page outline
+
+## Page 1
+- Problem introduction
+- Learning to Bid Without Knowing your Value
+- Learning-by-Doing Approach
+- Classic MAB
+
+
+## Page 2
+- The Outcome-Based Feedback Framework
+
+
+## Page 3
+- WIN-EXP algorithm
+
+
+## Page 4
+- Algorithm extensions
+
+
+## Page 5
+- Experiments & Conclusion
