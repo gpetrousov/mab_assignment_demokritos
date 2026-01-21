@@ -3,9 +3,6 @@
 % petrousov@gmail.com
 % 2026
 %
-% Custom Latex thesis template
-% to be used for English language.
-%
 % Initial compile:
 %     1. xelatex
 %     2. bibtex
@@ -31,6 +28,10 @@
 % Use the following documentclass for PDF and to view on computer only
 \documentclass[11pt,a4paper]{report}%{book}
 
+% Language settings
+\usepackage[utf8]{inputenc}
+\usepackage[greek,english]{babel}
+
 % TEXT FORMATTING
 % set spacing between lines (line spacing)
 \usepackage{setspace}
@@ -52,6 +53,9 @@
 \usepackage{geometry}
 \geometry{left=3cm, right=2cm, top=2.5cm, bottom=2.5cm}
 % text justification is fully-justified by default
+
+% Numbered lists package
+\usepackage{enumitem}
 
 % xelatex wants fontspec
 \usepackage{fontspec}
