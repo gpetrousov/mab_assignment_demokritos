@@ -1,23 +1,185 @@
-\documentclass{beamer}
-\usetheme{Madrid} % Ένα καθαρό και επαγγελματικό θέμα
+% About
+% Dark Beamer theme
+% https://github.com/gpetrousov/dark-beamer-theme
+%
+% Author
+% Original author: Blottiere Paul
+% Additions: Ioannis Petrousov
+%
+% Compile
+% just run xelatex
 
-\title{Learning to Bid Without Knowing your Value}
-\author{Όνομα 1, Όνομα 2}
-\date{Ιανουάριος 2026}
+% aspect ratio 16:9
+\documentclass[12pt,t,aspectratio=169,xcolor=table]{beamer}
 
-\begin{document}
+% aspect ratio 4:3
+% WARNING
+% If you decide to use this ration, make sure you adjust the
+% position of the date so it sit's exactly on the footer (blue line).
+% In general, avoid using this ratio, we 're not in the 90's anymore.
+%\documentclass[12pt,t]{beamer}
 
+% Set theme
+\usetheme{Madrid}
+
+% usepackage
+% \usepackage{theme/dbt} % our main theme
+\usepackage{algorithm2e}
+\usepackage{xltxtra}
+
+% Font related work - adapted to Greek
+\usepackage{fontspec}
+\usepackage[greek,english]{babel}
+\usefonttheme{serif}
+\setmainfont{GFS Didot}
+\setsansfont{GFS Didot}
+
+\usepackage{listings}
+\usepackage{multirow} % allows merging cells in tables
+\usepackage{hyperref}
+\usepackage{caption}
+
+% set color of table caption
+\captionsetup[table]{labelfont={color=yellow}}
+
+% set bibliography colors
+\setbeamercolor{bibliography item}{fg=white,bg=white}
+\setbeamercolor*{bibliography entry title}{fg=white,bg=white}
+\setbeamercolor*{bibliography entry author}{fg=keywords,bg=keywords}
+
+% put images in images path
+% \graphicspath{{images/}}
+
+\title{Report on paper: Learning to Bid Without Knowing your Value}
+\date{Νοέμβριος 2016} % change to the desired date
+% \subtitle{
+% Πανεπιστήμιο Δυτικής Μακεδονίας\\
+% Τμήμα Μηχανικών Πληροφορικής και Τηλεπικοινωνιών
+% }
+
+\author[me]{Ioannis Petrousov, Faidon ...}
+
+% Affiliations
+% \institute {
+% Εργαστήριο Ψηφιακών Συστημάτων και Αρχιτεκτονικής Υπολογιστών\\
+% http://arch.icte.uowm.gr
+% }
+
+\begin{document} {
+    \setbeamertemplate{footline}{}
+    \frame {
+        \titlepage
+    }
+}
+
+\begin{frame}{Πίνακας περιεχομένων}
+    \tableofcontents
+\end{frame}
+
+
+\section{Εισαγωγή}
 \begin{frame}
-    \titlepage % Η πρώτη διαφάνεια με τον τίτλο
+    \frametitle{Εισαγωγή}
 \end{frame}
 
-\begin{frame}{Περιγραφή του Προβλήματος}
-    \begin{itemize}
-        \item Παραδοσιακή θεωρία: Οι παίκτες γνωρίζουν την αξία $v$[cite: 16].
-        \item Ψηφιακή οικονομία: Η αξία είναι άγνωστη και μεταβάλλεται[cite: 18, 21].
-        \item Feedback:revealed μόνο σε περίπτωση νίκης (win-only)[cite: 10, 27].
-    \end{itemize}
+\subsection{Περιγραφή του προβλήματος}
+\begin{frame}
+    \frametitle{Περιγραφή του προβλήματος}
 \end{frame}
 
-% Συνεχίζεις με τα υπόλοιπα frames...
+
+\subsection{Συναφή έρευνα}
+\begin{frame}
+    \begin{center}
+        \Huge Συναφή έρευνα
+    \end{center}
+\end{frame}
+
+
+\subsection{Συνεισφορές της έρευνας}
+\begin{frame}
+    \begin{center}
+        \Huge Συνεισφορές της έρευνας
+    \end{center}
+\end{frame}
+
+%--------%
+
+
+\section{Ο αλγόριθμος WIN-EXP}
+\begin{frame}
+    \begin{center}
+        \Huge Ο αλγόριθμος WIN-EXP
+    \end{center}
+\end{frame}
+
+\subsection{H Αμερόληπτη Εκτίμηση Χρησιμότητας}
+\begin{frame}
+    \begin{center}
+        \Huge H Αμερόληπτη Εκτίμηση Χρησιμότητας
+    \end{center}
+\end{frame}
+
+
+\subsection{Μεταμέλεια}
+\begin{frame}
+    \begin{center}
+        \Huge Μεταμέλεια
+    \end{center}
+\end{frame}
+
+%--------%
+
+
+\section{Lipschitz}
+\begin{frame}
+    \begin{center}
+        \Huge Lipschitz
+    \end{center}
+\end{frame}
+
+\subsection{sub 1}
+\begin{frame}
+    \begin{center}
+        \Huge sub 1
+    \end{center}
+\end{frame}
+
+
+\subsection{Sub 2}
+\begin{frame}
+    \begin{center}
+        \Huge Sub 2
+    \end{center}
+\end{frame}
+
+%--------%
+
+\section{Πειράματα και Σύνοψη}
+\begin{frame}
+    \begin{center}
+        \Huge Πειράματα
+    \end{center}
+\end{frame}
+
+\subsection{Σύνοψη}
+\begin{frame}
+    \begin{center}
+        \Huge Σύνοψη
+    \end{center}
+\end{frame}
+
+%--------%
+
+\section{Τέλος}
+\begin{frame}[plain,c]
+\begin{center}
+\Huge Τέλος
+% \color{title}\small\vfill contact@petrousoft.com\\
+\end{center}
+\end{frame}
+
+
+
+
 \end{document}
