@@ -143,10 +143,17 @@
 
 
 \subsection{Μεταμέλεια}
-\begin{frame}
-    \begin{center}
-        \Huge Μεταμέλεια
-    \end{center}
+\begin{frame}{Μεταμέλεια}
+    \begin{itemize}
+        \item \textbf{Θεωρητικό Όριο (Theorem 3.2):} Η αναμενόμενη μεταμέλεια για win-only feedback είναι $4\sqrt{T \log(|B|)}$.
+        \item \textbf{Γενικευμένο Όριο (Theorem 4.1):} Για $O$ πιθανά αποτελέσματα, η μεταμέλεια είναι $2\sqrt{2T|O| \log(|B|)}$.
+        \item \textbf{Σύγκριση με Bandit Αλγορίθμους:}
+            \begin{itemize}
+                \item Generic Bandit: $O(\sqrt{T|B|})$ (γραμμική εξάρτηση από το μέγεθος του χώρου δράσεων).
+                \item WIN-EXP: $O(\sqrt{T \log(|B|)})$ (λογαριθμική εξάρτηση - ταχύτερη σύγκλιση).
+            \end{itemize}
+        \item \textbf{Σημασία:} Η απόδοση είναι σχεδόν ισοδύναμη με το σενάριο πλήρους πληροφόρησης.
+    \end{itemize}
 \end{frame}
 
 %--------%
