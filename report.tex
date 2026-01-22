@@ -36,19 +36,29 @@
 % set spacing between lines (line spacing)
 \usepackage{setspace}
 \setstretch{1.5}
+
 % package to customize chapters, sections and subsections style
 \usepackage{titlesec}
+% Section: Single number (1, 2, 3)
+\renewcommand{\thesection}{\arabic{section}}
+% Subsection: Section dot Subsection (1.1, 1.2)
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+
 % chapter title appearance format
 \titleformat{\chapter}[display]
 {\bfseries\huge}{\chaptertitlename\space\thechapter}{16pt}{}
 % https://www.sharelatex.com/learn/Sections_and_chapters
 \titlespacing{\chapter}{0pc}{1.5ex plus .1ex minus .2ex}{5pc}
+
 % section title appearance format
 \titleformat{\section}
 {\bfseries\large}{\thesection}{14pt}{}
+
+
 % subsection title appearance format
 \titleformat{\subsection}
 {\bfseries\normalsize}{\thesubsection}{12pt}{}
+
 % set margins
 \usepackage{geometry}
 \geometry{left=3cm, right=2cm, top=2.5cm, bottom=2.5cm}
