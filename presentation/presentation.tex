@@ -39,8 +39,8 @@
 \usepackage{hyperref}
 \usepackage{caption}
 
-% set color of table caption
-\captionsetup[table]{labelfont={color=yellow}}
+% Customize title in the footer
+\setbeamerfont{title in head/foot}{size=\tiny}
 
 % set bibliography colors
 \setbeamercolor{bibliography item}{fg=white,bg=white}
@@ -50,7 +50,7 @@
 % put images in images path
 % \graphicspath{{images/}}
 
-\title[Report on paper:Learning to Bid Without Knowing your Value]{Report on paper:Learning to Bid Without Knowing your Value}
+\title[Report:Learning to Bid Without Knowing your Value]{Report on paper:Learning to Bid Without Knowing your Value}
 \date{\ifcase\month\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi, \number\year}
 % \subtitle{
 % Πανεπιστήμιο Δυτικής Μακεδονίας\\
@@ -185,10 +185,20 @@
 %--------%
 
 \section{Πειράματα και Σύνοψη}
-\begin{frame}
-    \begin{center}
-        \Huge Πειράματα
-    \end{center}
+\begin{frame}{Πειράματα}
+    \textbf{Προσομοίωση:}
+    \begin{itemize}
+        \item \textbf{Weighted General Second Price - GSP:} Ρυθμός "κλικ" (CTR) $U[0.1,1]$, $U[0.3,1]$ και $U[0.5,1]$
+        \item \textbf{Ιδιότητες:} 5.000 γύρους, 20 πλειοδότες, 3 θέσεις (slots) διαφήμισης.
+        \item \textbf{Τύποι αντιπάλων:} 1. Στοχαστικοί αντίπαλοι, 2. Προσαρμοστική αντίπαλοι EXP3, 3. Προσαρμοστική αντίπαλοι WIN-EXP.
+    \end{itemize}
+
+    \textbf{Αποτελέσματα:}
+    \begin{itemize}
+        \item O WIN-EXP υπερέχει σταθερά του EXP3 και στις τρεις παραπάνω κατηγορίες.
+        \item Η απόδοση του WIN-EXP είναι σταθερή σε χώρο με πολλές προσφορές.
+        \item Ο WIN-EXP δείχνει ανθεκτικότητα (robustness) σε δεδομένα με θόρυβο (noisy data).
+    \end{itemize}
 \end{frame}
 
 \subsection{Σύνοψη}
