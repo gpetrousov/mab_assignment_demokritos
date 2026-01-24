@@ -7,3 +7,5 @@
 *.lot
 *.bbl
 *.blg
+*.nav
+*.snm
