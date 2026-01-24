@@ -158,28 +158,36 @@
 
 %--------%
 
-
-\section{Lipschitz}
-\begin{frame}{Lipschitz}
+\section{Διακριτοποίηση και Lipschitz Συνέχεια}
+\begin{frame}{Διακριτοποίηση και Lipschitz Συνέχεια}
+    \textbf{Πρόβλημα:} Ο χώρος των προσφορών είναι συνεχής $[0, V_{max}]$, αλλά ο αλγόριθμος απαιτεί διακριτά σημεία.
+    
     \begin{itemize}
-        \item WIN-EXP3 can work in continuous spaces
-        \item We discretize the space
+        \item \textbf{Διακριτοποίηση (Binning):} Χωρίζουμε το συνεχές διάστημα σε $K$ επιμέρους διαστήματα (\textbf{bins}).
+        \item \textbf{$\Delta$-Lipschitz Συνέχεια:} Αποδεικνύεται ότι η αναμενόμενη χρησιμότητα $u_t(b)$ είναι Lipschitz συνεχής. 
+        \begin{itemize}
+            \item Εγγυάται «ομαλότητα»: μικρές αλλαγές στο $b$ επιφέρουν μικρές αλλαγές στη χρησιμότητα.
+        \end{itemize}
+        \item \textbf{Φράγμα Μεταμέλειας (Theorem 5.4):} Η μεταμέλεια στον συνεχή χώρο είναι $O(T^{2/3}\sqrt{\log T})$.
+        \item \textbf{Trade-off:} Το σφάλμα προκύπτει από τον συνδυασμό της εκτίμησης του αλγορίθμου και του σφάλματος διακριτοποίησης.
     \end{itemize}
 \end{frame}
 
-\subsection{Sponsored search}
-\begin{frame}{Sponsored search}
+\subsection{Πρακτική Εφαρμογή}
+\begin{frame}{Πρακτική Εφαρμογή και Bid Simulators}
+    \textbf{Ερώτημα:} Πού βρίσκουμε τις συναρτήσεις $x_t$ (κατανομή) και $p_t$ (πληρωμή);
+    
     \begin{itemize}
-        \item Lipschitz Utilities
+        \item \textbf{Η Φύση της $x_t(b)$:} Αντιπροσωπεύει την \textbf{Αθροιστική Συνάρτηση Κατανομής (CDF)} των προσφορών των αντιπάλων.
+        \item \textbf{Bid Simulators:} Εργαλεία (π.χ. Google Ads, Bing) παρέχουν έτοιμες αυτές τις καμπύλες (CDF) στους πλειοδότες.
+        \item \textbf{Προσέγγιση μέσω Regression:} Αν δεν υπάρχει Simulator, οι συναρτήσεις εκτιμώνται από ιστορικά δεδομένα:
+        \begin{itemize}
+            \item \textbf{Logistic Regression:} Για την εκτίμηση της πιθανότητας κλικ ($x_t$).
+            \item \textbf{Linear Regression:} Για την εκτίμηση της πληρωμής ($p_t$).
+        \end{itemize}
+        \item \textbf{Robustness:} Ο WIN-EXP αποδίδει καλά ακόμα και με «θορυβώδεις» εκτιμήσεις των συναρτήσεων αυτών.
     \end{itemize}
-\end{frame}
-
-
-\subsection{Further extensions}
-\begin{frame}{Further extensions}
-    \begin{itemize}
-        \item Graphs
-    \end{itemize}
+    
 \end{frame}
 
 %--------%
