@@ -1,0 +1,236 @@
+% About
+% Dark Beamer theme
+% https://github.com/gpetrousov/dark-beamer-theme
+%
+% Author
+% Original author: Blottiere Paul
+% Additions: Ioannis Petrousov
+%
+% Compile
+% just run xelatex
+
+% aspect ratio 16:9
+\documentclass[12pt,t,aspectratio=169,xcolor=table]{beamer}
+
+% aspect ratio 4:3
+% WARNING
+% If you decide to use this ration, make sure you adjust the
+% position of the date so it sit's exactly on the footer (blue line).
+% In general, avoid using this ratio, we 're not in the 90's anymore.
+%\documentclass[12pt,t]{beamer}
+
+% Set theme
+\usetheme{Madrid}
+
+% usepackage
+% \usepackage{theme/dbt} % our main theme
+\usepackage{algorithm2e}
+\usepackage{xltxtra}
+
+% Font related work - adapted to Greek
+\usepackage{fontspec}
+\usepackage[greek,english]{babel}
+\usefonttheme{serif}
+\setmainfont{GFS Didot}
+\setsansfont{GFS Didot}
+
+\usepackage{listings}
+\usepackage{multirow} % allows merging cells in tables
+\usepackage{hyperref}
+\usepackage{caption}
+
+% Customize title in the footer
+\setbeamerfont{title in head/foot}{size=\tiny}
+
+% set bibliography colors
+\setbeamercolor{bibliography item}{fg=white,bg=white}
+\setbeamercolor*{bibliography entry title}{fg=white,bg=white}
+\setbeamercolor*{bibliography entry author}{fg=keywords,bg=keywords}
+
+% put images in images path
+% \graphicspath{{images/}}
+
+\title[Report:Learning to Bid Without Knowing your Value]{Report on paper:Learning to Bid Without Knowing your Value}
+\date{\ifcase\month\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi, \number\year}
+% \subtitle{
+% Πανεπιστήμιο Δυτικής Μακεδονίας\\
+% Τμήμα Μηχανικών Πληροφορικής και Τηλεπικοινωνιών
+% }
+
+\author[Ioannis Petrousov, Faidon]{}
+
+% Affiliations
+% \institute {
+% Εργαστήριο Ψηφιακών Συστημάτων και Αρχιτεκτονικής Υπολογιστών\\
+% http://arch.icte.uowm.gr
+% }
+
+\begin{document} {
+    \setbeamertemplate{footline}{}
+    \frame {
+        \titlepage
+    }
+}
+
+\begin{frame}{Πίνακας περιεχομένων}
+    \tableofcontents
+\end{frame}
+
+
+\section{Εισαγωγή}
+\begin{frame}
+    \frametitle{Εισαγωγή}
+    \begin{itemize}
+        \item \textbf{Παραδοσιακή Παραδοχή:} Οι συμμετέχοντες έχουν σαφή γνώση της αξίας (value) των αγαθών.
+        \item \textbf{Ψηφιακή Οικονομία:} Η παραδοχή παραβιάζεται σε περιβάλλοντα όπως οι διαφημίσεις αναζήτησης ή πλειστηριασμοί eBay.
+        \item \textbf{Το Πρόβλημα:} Η αξία ενός "κλικ" ή ενός αγαθού είναι συχνά άγνωστη πριν τη δημοπρασία.
+        \item \textbf{Δυναμική Μάθησης:} Οι πλειοδότες πρέπει να μαθαίνουν «πράττοντας» (learning-by-doing) μέσω επαναλαμβανόμενων συμμετοχών.
+    \end{itemize}
+\end{frame}
+
+\subsection{Συναφή έρευνα}
+\begin{frame}{Συναφή Έρευνα και Περιορισμοί}
+    \begin{itemize}
+        \item \textbf{Multi-Armed Bandits (MAB):} Κάθε προσφορά αντιμετωπίζεται ως ανεξάρτητος «βραχίονας».
+        \item \textbf{Ρυθμός Μεταμέλειας (Regret):} Οι κλασικοί αλγόριθμοι MAB έχουν μεταμέλεια $O(\sqrt{T|B|})$, η οποία αυξάνεται γραμμικά με το πλήθος των προσφορών $|B|$.
+        \item \textbf{Εξειδικευμένες Λύσεις:} Προηγούμενες εργασίες εστιάζουν κυρίως σε δημοπρασίες δεύτερης τιμής, στερούμενες γενίκευσης.
+        \item \textbf{Έλλειμμα Δομής:} Οι τυπικοί αλγόριθμοι δεν εκμεταλλεύονται τη δομή της χρησιμότητας και της μερικής ανατροφοδότησης των δημοπρασιών.
+    \end{itemize}
+\end{frame}
+
+
+\subsection{Συνεισφορές της έρευνας}
+\begin{frame}{Κύριες Συνεισφορές του Άρθρου}
+    \begin{itemize}
+        \item \textbf{Outcome-Based Feedback:} Εισαγωγή ενός νέου πλαισίου μάθησης που γενικεύει τα feedback graphs.
+        \item \textbf{Αλγόριθμος WIN-EXP:} Μια παραλλαγή του EXP3 με αμερόληπτες εκτιμήσεις χαμηλής διασποράς.
+        \item \textbf{Εκθετική Επιτάχυνση:} Ρυθμός μεταμέλειας $O(\sqrt{T|O|\log(|B|)})$, με λογαριθμική εξάρτηση από τις προσφορές.
+        \item \textbf{Καθολική Εφαρμογή:} Κατάλληλο για δημοπρασίες πρώτης και δεύτερης τιμής, sponsored search και multi-item auctions.
+        \item \textbf{Ανθεκτικότητα:} Αποδεδειγμένη ανθεκτικότητα σε θορυβώδη δεδομένα και σφάλματα εκτίμησης.
+    \end{itemize}
+\end{frame}
+
+%--------%
+
+
+\section{Ο αλγόριθμος WIN-EXP}
+\begin{frame}{Ο Αλγόριθμος WIN-EXP}
+    \begin{itemize}
+        \item \textbf{Προέλευση:} Αποτελεί μια παραλλαγή του αλγορίθμου EXP3.
+        \item \textbf{Λειτουργία:} Διατηρεί μια κατανομή πιθανότητας $\pi_t$ πάνω στο σύνολο των δυνατών προσφορών $B$.
+        \item \textbf{Καινοτομία:} Ενσωματώνει την ανατροφοδότηση της συνάρτησης κατανομής $x_t$ για την κατασκευή εκτιμήσεων.
+        \item \textbf{Διαδικασία:} 
+            \begin{enumerate}
+                \item Επιλογή προσφοράς $b_t$ από την κατανομή $\pi_t$.
+                \item Παρατήρηση της πιθανότητας νίκης $x_t$ και, σε περίπτωση νίκης, της ανταμοιβής $r_t$.
+                \item Υπολογισμός εκτίμησης χρησιμότητας και ενημέρωση των βαρών $\pi_t$.
+            \end{enumerate}
+    \end{itemize}
+\end{frame}
+
+\subsection{H Αμερόληπτη Εκτίμηση Χρησιμότητας}
+\begin{frame}{H Αμερόληπτη Εκτίμηση Χρησιμότητας}
+    \begin{itemize}
+        \item \textbf{Στόχος:} Κατασκευή μιας εκτίμησης με χαμηλή διασπορά (variance) που αξιοποιεί τη δομή της δημοπρασίας.
+        \item \textbf{Ορισμός (για win-only feedback):}
+            \begin{itemize}
+                \item Αν κερδηθεί η ανταμοιβή: $\tilde{u}_t(b) = \frac{(r_t(b)-1)Pr[A_t|b_t=b]}{Pr[A_t]}$
+                \item Αν δεν κερδηθεί η ανταμοιβή: $\tilde{u}_t(b) = -\frac{Pr[\neg A_t|b_t=b]}{Pr[\neg A_t]}$
+            \end{itemize}
+        \item \textbf{Ιδιότητα (Λήμμα 3.1):} Η συνάρτηση $\tilde{u}_t(b)$ είναι αμερόληπτη εκτίμηση της πραγματικής αναμενόμενης χρησιμότητας $u_t(b)$, μετατοπισμένη κατά $-1$ ($\mathbb{E}[\tilde{u}_t(b)] = u_t(b) - 1$).
+    \end{itemize}
+\end{frame}
+
+
+\subsection{Μεταμέλεια}
+\begin{frame}{Μεταμέλεια}
+    \begin{itemize}
+        \item \textbf{Θεωρητικό Όριο (Theorem 3.2):} Η αναμενόμενη μεταμέλεια για win-only feedback είναι $4\sqrt{T \log(|B|)}$.
+        \item \textbf{Γενικευμένο Όριο (Theorem 4.1):} Για $O$ πιθανά αποτελέσματα, η μεταμέλεια είναι $2\sqrt{2T|O| \log(|B|)}$.
+        \item \textbf{Σύγκριση με Bandit Αλγορίθμους:}
+            \begin{itemize}
+                \item Generic Bandit: $O(\sqrt{T|B|})$ (γραμμική εξάρτηση από το μέγεθος του χώρου δράσεων).
+                \item WIN-EXP: $O(\sqrt{T \log(|B|)})$ (λογαριθμική εξάρτηση - ταχύτερη σύγκλιση).
+            \end{itemize}
+        \item \textbf{Σημασία:} Η απόδοση είναι σχεδόν ισοδύναμη με το σενάριο πλήρους πληροφόρησης.
+    \end{itemize}
+\end{frame}
+
+%--------%
+
+\section{Διακριτοποίηση και Lipschitz Συνέχεια}
+\begin{frame}{Διακριτοποίηση και Lipschitz Συνέχεια}
+    \textbf{Πρόβλημα:} Ο χώρος των προσφορών είναι συνεχής $[0, V_{max}]$, αλλά ο αλγόριθμος απαιτεί διακριτά σημεία.
+    
+    \begin{itemize}
+        \item \textbf{Διακριτοποίηση (Binning):} Χωρίζουμε το συνεχές διάστημα σε $K$ επιμέρους διαστήματα (\textbf{bins}).
+        \item \textbf{$\Delta$-Lipschitz Συνέχεια:} Αποδεικνύεται ότι η αναμενόμενη χρησιμότητα $u_t(b)$ είναι Lipschitz συνεχής. 
+        \begin{itemize}
+            \item Εγγυάται «ομαλότητα»: μικρές αλλαγές στο $b$ επιφέρουν μικρές αλλαγές στη χρησιμότητα.
+        \end{itemize}
+        \item \textbf{Φράγμα Μεταμέλειας (Theorem 5.4):} Η μεταμέλεια στον συνεχή χώρο είναι $O(T^{2/3}\sqrt{\log T})$.
+        \item \textbf{Trade-off:} Το σφάλμα προκύπτει από τον συνδυασμό της εκτίμησης του αλγορίθμου και του σφάλματος διακριτοποίησης.
+    \end{itemize}
+\end{frame}
+
+\subsection{Πρακτική Εφαρμογή}
+\begin{frame}{Πρακτική Εφαρμογή και Bid Simulators}
+    \textbf{Ερώτημα:} Πού βρίσκουμε τις συναρτήσεις $x_t$ (κατανομή) και $p_t$ (πληρωμή);
+    
+    \begin{itemize}
+        \item \textbf{Η Φύση της $x_t(b)$:} Αντιπροσωπεύει την \textbf{Αθροιστική Συνάρτηση Κατανομής (CDF)} των προσφορών των αντιπάλων.
+        \item \textbf{Bid Simulators:} Εργαλεία (π.χ. Google Ads, Bing) παρέχουν έτοιμες αυτές τις καμπύλες (CDF) στους πλειοδότες.
+        \item \textbf{Προσέγγιση μέσω Regression:} Αν δεν υπάρχει Simulator, οι συναρτήσεις εκτιμώνται από ιστορικά δεδομένα:
+        \begin{itemize}
+            \item \textbf{Logistic Regression:} Για την εκτίμηση της πιθανότητας κλικ ($x_t$).
+            \item \textbf{Linear Regression:} Για την εκτίμηση της πληρωμής ($p_t$).
+        \end{itemize}
+        \item \textbf{Robustness:} Ο WIN-EXP αποδίδει καλά ακόμα και με «θορυβώδεις» εκτιμήσεις των συναρτήσεων αυτών.
+    \end{itemize}
+    
+\end{frame}
+
+%--------%
+
+\section{Πειράματα και Σύνοψη}
+\begin{frame}{Πειράματα}
+    \textbf{Προσομοίωση:}
+    \begin{itemize}
+        \item \textbf{Weighted General Second Price - GSP:} Ρυθμός "κλικ" (CTR) $U[0.1,1]$, $U[0.3,1]$ και $U[0.5,1]$
+        \item \textbf{Ιδιότητες:} 5.000 γύρους, 20 πλειοδότες, 3 θέσεις (slots) διαφήμισης.
+        \item \textbf{Τύποι αντιπάλων:} 1. Στοχαστικοί αντίπαλοι, 2. Προσαρμοστική αντίπαλοι EXP3, 3. Προσαρμοστική αντίπαλοι WIN-EXP.
+    \end{itemize}
+
+    \textbf{Αποτελέσματα:}
+    \begin{itemize}
+        \item O WIN-EXP υπερέχει σταθερά του EXP3 και στις τρεις παραπάνω κατηγορίες.
+        \item Η απόδοση του WIN-EXP είναι σταθερή σε χώρο με πολλές προσφορές.
+        \item Ο WIN-EXP δείχνει ανθεκτικότητα (robustness) σε δεδομένα με θόρυβο (noisy data).
+    \end{itemize}
+\end{frame}
+
+\subsection{Σύνοψη}
+\begin{frame}{Σύνοψη}
+    \begin{itemize}
+        \item \textbf{Βασικό Εύρημα:} Η άγνωστη αξία στις δημοπρασίες είναι μια «καλοήθης» (benign) μορφή ελλιπούς πληροφορίας.
+        \item \textbf{Αποδοτικότητα:} Ο WIN-EXP επιτυγχάνει ρυθμούς μεταμέλειας σχεδόν ισοδύναμους με το σενάριο πλήρους πληροφόρησης.
+        \item \textbf{Aνθεκτικότητα:} Τα αποτελέσματα παραμένουν ισχυρά ακόμα και με θορυβώδη δεδομένα.
+        \item \textbf{Lipschitz:} <INSERT HERE RESULTS FROM 5, 6>
+        \item \textbf{Μελλοντική Έρευνα:} Επέκταση σε περιβάλλοντα όπου η αξία αποκαλύπτεται με καθυστέρηση ή εξαρτάται από τον ανταγωνισμό.
+    \end{itemize}
+\end{frame}
+
+%--------%
+
+\section{Τέλος}
+\begin{frame}[plain,c]
+\begin{center}
+\Huge Τέλος
+% \color{title}\small\vfill contact@petrousoft.com\\
+\end{center}
+\end{frame}
+
+
+
+
+\end{document}
