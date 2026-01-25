@@ -20,6 +20,9 @@
 \usepackage{caption}
 \usepackage{amsmath}
 \usepackage{qrcode}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{caption}
 
 % Font settings
 \usefonttheme{serif}
@@ -139,15 +142,27 @@
 
 \section{Πειράματα και Σύνοψη}
 \begin{frame}{Πειραματική Αξιολόγηση}
-    \textbf{Setup:} Weighted GSP, 20 πλειοδότες, 5.000 γύροι.
-    \begin{itemize}
-        \item \textbf{Αποτελέσματα:}
+    \begin{columns}[t]
+        \begin{column}{0.55\textwidth}
+            \textbf{Setup:} Weighted GSP, 20 πλειοδότες, 5.000 γύροι.
             \begin{itemize}
-                \item Ο WIN-EXP υπερέχει σταθερά του EXP3 σε όλες τις κατηγορίες αντιπάλων.
-                \item Η απόδοση παραμένει σταθερή ακόμα και με πολύ πυκνή διακριτοποίηση (πολλά bins).
-                \item Υψηλή ανθεκτικότητα σε σενάρια με θορυβώδη δεδομένα (noisy data).
+                \item \textbf{Αποτελέσματα:}
+                    \begin{itemize}
+                        \item Ο WIN-EXP υπερέχει σταθερά του EXP3 σε όλες τις κατηγορίες αντιπάλων.
+                        \item Η απόδοση παραμένει σταθερή ακόμα και με πολύ πυκνή διακριτοποίηση (πολλά bins).
+                        \item Υψηλή ανθεκτικότητα σε σενάρια με θορυβώδη δεδομένα (noisy data).
+                    \end{itemize}
             \end{itemize}
-    \end{itemize}
+        \end{column}
+        
+        \begin{column}{0.45\textwidth}
+            \centering
+            \begin{figure}
+                \includegraphics[width=\textwidth]{images/b_comparison_winexp_adversaries.png}
+                \caption*{\tiny Σύγκριση σωρευτικής μεταμέλειας (WIN-EXP vs Adversaries)}
+            \end{figure}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \subsection{Σύνοψη}
