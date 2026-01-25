@@ -1,89 +1,58 @@
-% About
-% Dark Beamer theme
-% https://github.com/gpetrousov/dark-beamer-theme
-%
-% Author
-% Original author: Blottiere Paul
-% Additions: Ioannis Petrousov
-%
-% Compile
-% just run xelatex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ioannis Petrousov
+% Report Presentation
+% 2026
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% aspect ratio 16:9
-\documentclass[12pt,t,aspectratio=169,xcolor=table]{beamer}
-
-% aspect ratio 4:3
-% WARNING
-% If you decide to use this ration, make sure you adjust the
-% position of the date so it sit's exactly on the footer (blue line).
-% In general, avoid using this ratio, we 're not in the 90's anymore.
-%\documentclass[12pt,t]{beamer}
+\documentclass[11pt,t,aspectratio=169,xcolor=table]{beamer}
 
 % Set theme
 \usetheme{Madrid}
 
-% usepackage
-% \usepackage{theme/dbt} % our main theme
+% Packages
 \usepackage{algorithm2e}
 \usepackage{xltxtra}
-
-% Font related work - adapted to Greek
 \usepackage{fontspec}
 \usepackage[greek,english]{babel}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{amsmath}
+
+% Font settings
 \usefonttheme{serif}
 \setmainfont{GFS Didot}
 \setsansfont{GFS Didot}
 
-\usepackage{listings}
-\usepackage{multirow} % allows merging cells in tables
-\usepackage{hyperref}
-\usepackage{caption}
+% Bibliography colors (standard Beamer)
+\setbeamercolor{bibliography item}{fg=black}
+\setbeamercolor{bibliography entry author}{fg=black}
+\setbeamercolor{bibliography entry title}{fg=black}
+\setbeamercolor{bibliography entry location}{fg=black}
+\setbeamercolor{bibliography entry note}{fg=black}
 
-% Customize title in the footer
-\setbeamerfont{title in head/foot}{size=\tiny}
-
-% set bibliography colors
-\setbeamercolor{bibliography item}{fg=white,bg=white}
-\setbeamercolor*{bibliography entry title}{fg=white,bg=white}
-\setbeamercolor*{bibliography entry author}{fg=keywords,bg=keywords}
-
-% put images in images path
-% \graphicspath{{images/}}
-
-\title[Report:Learning to Bid Without Knowing your Value]{Report on paper:Learning to Bid Without Knowing your Value}
+\title[Report: Learning to Bid Without Knowing your Value]{Report on paper: Learning to Bid Without Knowing your Value}
+\author[Ioannis Petrousov]{Ioannis Petrousov}
 \date{\ifcase\month\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi, \number\year}
-% \subtitle{
-% Πανεπιστήμιο Δυτικής Μακεδονίας\\
-% Τμήμα Μηχανικών Πληροφορικής και Τηλεπικοινωνιών
-% }
 
-\author[Ioannis Petrousov, Faidon]{}
+\begin{document}
 
-% Affiliations
-% \institute {
-% Εργαστήριο Ψηφιακών Συστημάτων και Αρχιτεκτονικής Υπολογιστών\\
-% http://arch.icte.uowm.gr
-% }
-
-\begin{document} {
+{
     \setbeamertemplate{footline}{}
-    \frame {
-        \titlepage
-    }
+    \frame{\titlepage}
 }
 
 \begin{frame}{Πίνακας περιεχομένων}
     \tableofcontents
 \end{frame}
 
-
 \section{Εισαγωγή}
-\begin{frame}
-    \frametitle{Εισαγωγή}
+\begin{frame}{Εισαγωγή}
     \begin{itemize}
         \item \textbf{Παραδοσιακή Παραδοχή:} Οι συμμετέχοντες έχουν σαφή γνώση της αξίας (value) των αγαθών.
         \item \textbf{Ψηφιακή Οικονομία:} Η παραδοχή παραβιάζεται σε περιβάλλοντα όπως οι διαφημίσεις αναζήτησης ή πλειστηριασμοί eBay.
-        \item \textbf{Το Πρόβλημα:} Η αξία ενός "κλικ" ή ενός αγαθού είναι συχνά άγνωστη πριν τη δημοπρασία.
+        \item \textbf{Το Πρόβλημα:} Η αξία ενός «κλικ» ή ενός αγαθού είναι συχνά άγνωστη πριν τη δημοπρασία.
         \item \textbf{Δυναμική Μάθησης:} Οι πλειοδότες πρέπει να μαθαίνουν «πράττοντας» (learning-by-doing) μέσω επαναλαμβανόμενων συμμετοχών.
     \end{itemize}
 \end{frame}
@@ -96,8 +65,8 @@
         \item \textbf{Εξειδικευμένες Λύσεις:} Προηγούμενες εργασίες εστιάζουν κυρίως σε δημοπρασίες δεύτερης τιμής, στερούμενες γενίκευσης.
         \item \textbf{Έλλειμμα Δομής:} Οι τυπικοί αλγόριθμοι δεν εκμεταλλεύονται τη δομή της χρησιμότητας και της μερικής ανατροφοδότησης των δημοπρασιών.
     \end{itemize}
+    
 \end{frame}
-
 
 \subsection{Συνεισφορές της έρευνας}
 \begin{frame}{Κύριες Συνεισφορές του Άρθρου}
@@ -106,12 +75,8 @@
         \item \textbf{Αλγόριθμος WIN-EXP:} Μια παραλλαγή του EXP3 με αμερόληπτες εκτιμήσεις χαμηλής διασποράς.
         \item \textbf{Εκθετική Επιτάχυνση:} Ρυθμός μεταμέλειας $O(\sqrt{T|O|\log(|B|)})$, με λογαριθμική εξάρτηση από τις προσφορές.
         \item \textbf{Καθολική Εφαρμογή:} Κατάλληλο για δημοπρασίες πρώτης και δεύτερης τιμής, sponsored search και multi-item auctions.
-        \item \textbf{Ανθεκτικότητα:} Αποδεδειγμένη ανθεκτικότητα σε θορυβώδη δεδομένα και σφάλματα εκτίμησης.
     \end{itemize}
 \end{frame}
-
-%--------%
-
 
 \section{Ο αλγόριθμος WIN-EXP}
 \begin{frame}{Ο Αλγόριθμος WIN-EXP}
@@ -123,114 +88,91 @@
             \begin{enumerate}
                 \item Επιλογή προσφοράς $b_t$ από την κατανομή $\pi_t$.
                 \item Παρατήρηση της πιθανότητας νίκης $x_t$ και, σε περίπτωση νίκης, της ανταμοιβής $r_t$.
-                \item Υπολογισμός εκτίμησης χρησιμότητας και ενημέρωση των βαρών $\pi_t$.
+                \item Ενημέρωση των βαρών: $\pi_{t+1}(b) \propto \pi_t(b) e^{\eta \tilde{u}_t(b)}$.
             \end{enumerate}
     \end{itemize}
 \end{frame}
 
 \subsection{H Αμερόληπτη Εκτίμηση Χρησιμότητας}
 \begin{frame}{H Αμερόληπτη Εκτίμηση Χρησιμότητας}
+    \textbf{Ορισμός (για win-only feedback):}
+    \begin{block}{Εκτίμηση Χρησιμότητας $\tilde{u}_t(b)$}
+        \begin{itemize}
+            \item Αν κερδηθεί η δημοπρασία ($A_t$): $\tilde{u}_t(b) = \frac{(r_t(b)-1)Pr[A_t|b_t=b]}{Pr[A_t]}$
+            \item Αν δεν κερδηθεί η δημοπρασία ($\neg A_t$): $\tilde{u}_t(b) = -\frac{Pr[\neg A_t|b_t=b]}{Pr[\neg A_t]}$
+        \end{itemize}
+    \end{block}
     \begin{itemize}
-        \item \textbf{Στόχος:} Κατασκευή μιας εκτίμησης με χαμηλή διασπορά (variance) που αξιοποιεί τη δομή της δημοπρασίας.
-        \item \textbf{Ορισμός (για win-only feedback):}
-            \begin{itemize}
-                \item Αν κερδηθεί η ανταμοιβή: $\tilde{u}_t(b) = \frac{(r_t(b)-1)Pr[A_t|b_t=b]}{Pr[A_t]}$
-                \item Αν δεν κερδηθεί η ανταμοιβή: $\tilde{u}_t(b) = -\frac{Pr[\neg A_t|b_t=b]}{Pr[\neg A_t]}$
-            \end{itemize}
-        \item \textbf{Ιδιότητα (Λήμμα 3.1):} Η συνάρτηση $\tilde{u}_t(b)$ είναι αμερόληπτη εκτίμηση της πραγματικής αναμενόμενης χρησιμότητας $u_t(b)$, μετατοπισμένη κατά $-1$ ($\mathbb{E}[\tilde{u}_t(b)] = u_t(b) - 1$).
+        \item \textbf{Ιδιότητα (Λήμμα 3.1):} $\mathbb{E}[\tilde{u}_t(b)] = u_t(b) - 1$.
+        \item Επιτρέπει τη μάθηση για \textbf{όλες} τις προσφορές $b$ από ένα μόνο αποτέλεσμα (Importance Sampling).
     \end{itemize}
 \end{frame}
-
-
-\subsection{Μεταμέλεια}
-\begin{frame}{Μεταμέλεια}
-    \begin{itemize}
-        \item \textbf{Θεωρητικό Όριο (Theorem 3.2):} Η αναμενόμενη μεταμέλεια για win-only feedback είναι $4\sqrt{T \log(|B|)}$.
-        \item \textbf{Γενικευμένο Όριο (Theorem 4.1):} Για $O$ πιθανά αποτελέσματα, η μεταμέλεια είναι $2\sqrt{2T|O| \log(|B|)}$.
-        \item \textbf{Σύγκριση με Bandit Αλγορίθμους:}
-            \begin{itemize}
-                \item Generic Bandit: $O(\sqrt{T|B|})$ (γραμμική εξάρτηση από το μέγεθος του χώρου δράσεων).
-                \item WIN-EXP: $O(\sqrt{T \log(|B|)})$ (λογαριθμική εξάρτηση - ταχύτερη σύγκλιση).
-            \end{itemize}
-        \item \textbf{Σημασία:} Η απόδοση είναι σχεδόν ισοδύναμη με το σενάριο πλήρους πληροφόρησης.
-    \end{itemize}
-\end{frame}
-
-%--------%
 
 \section{Διακριτοποίηση και Lipschitz Συνέχεια}
 \begin{frame}{Διακριτοποίηση και Lipschitz Συνέχεια}
-    \textbf{Πρόβλημα:} Ο χώρος των προσφορών είναι συνεχής $[0, V_{max}]$, αλλά ο αλγόριθμος απαιτεί διακριτά σημεία.
+    \textbf{Πρόβλημα:} Ο χώρος προσφορών είναι συνεχής, αλλά ο αλγόριθμος απαιτεί διακριτά σημεία.
     
     \begin{itemize}
-        \item \textbf{Διακριτοποίηση (Binning):} Χωρίζουμε το συνεχές διάστημα σε $K$ επιμέρους διαστήματα (\textbf{bins}).
-        \item \textbf{$\Delta$-Lipschitz Συνέχεια:} Αποδεικνύεται ότι η αναμενόμενη χρησιμότητα $u_t(b)$ είναι Lipschitz συνεχής. 
-        \begin{itemize}
-            \item Εγγυάται «ομαλότητα»: μικρές αλλαγές στο $b$ επιφέρουν μικρές αλλαγές στη χρησιμότητα.
-        \end{itemize}
-        \item \textbf{Φράγμα Μεταμέλειας (Theorem 5.4):} Η μεταμέλεια στον συνεχή χώρο είναι $O(T^{2/3}\sqrt{\log T})$.
-        \item \textbf{Trade-off:} Το σφάλμα προκύπτει από τον συνδυασμό της εκτίμησης του αλγορίθμου και του σφάλματος διακριτοποίησης.
+        \item \textbf{Διακριτοποίηση (Binning):} Χωρίζουμε το συνεχές διάστημα σε $K$ επιμέρους διαστήματα (\textbf{bins}) \cite{medium_discretization_2020}.
+        \item \textbf{$\Delta$-Lipschitz Συνέχεια:} Εγγυάται ότι η αναμενόμενη χρησιμότητα είναι «ομαλή» (smooth).
+        \item \textbf{Φράγμα Μεταμέλειας (Theorem 5.4):} Στον συνεχή χώρο είναι $O(T^{2/3}\sqrt{\log T})$.
+        \item \textbf{Trade-off:} Εξισορρόπηση σφάλματος εκτίμησης (estimation error) και σφάλματος πλέγματος (discretization error).
     \end{itemize}
+    
 \end{frame}
 
 \subsection{Πρακτική Εφαρμογή}
 \begin{frame}{Πρακτική Εφαρμογή και Bid Simulators}
-    \textbf{Ερώτημα:} Πού βρίσκουμε τις συναρτήσεις $x_t$ (κατανομή) και $p_t$ (πληρωμή);
-    
     \begin{itemize}
-        \item \textbf{Η Φύση της $x_t(b)$:} Αντιπροσωπεύει την \textbf{Αθροιστική Συνάρτηση Κατανομής (CDF)} των προσφορών των αντιπάλων.
-        \item \textbf{Bid Simulators:} Εργαλεία (π.χ. Google Ads, Bing) παρέχουν έτοιμες αυτές τις καμπύλες (CDF) στους πλειοδότες.
-        \item \textbf{Προσέγγιση μέσω Regression:} Αν δεν υπάρχει Simulator, οι συναρτήσεις εκτιμώνται από ιστορικά δεδομένα:
+        \item \textbf{Η Φύση της $x_t(b)$:} Αντιστοιχεί στην \textbf{CDF} των προσφορών των αντιπάλων \cite{wiki_cdf}.
+        \item \textbf{Bid Simulators:} Παρέχουν έτοιμες καμπύλες (Google Ads, Bing) για την $x_t$ και την $p_t$.
+        \item \textbf{Προσέγγιση μέσω Regression:} Σε περίπτωση έλλειψης simulator:
         \begin{itemize}
-            \item \textbf{Logistic Regression:} Για την εκτίμηση της πιθανότητας κλικ ($x_t$).
-            \item \textbf{Linear Regression:} Για την εκτίμηση της πληρωμής ($p_t$).
+            \item \textbf{Logistic Regression:} Για την εκτίμηση της $x_t$ (CTR).
+            \item \textbf{Linear Regression:} Για την εκτίμηση της πληρωμής $p_t$.
         \end{itemize}
-        \item \textbf{Robustness:} Ο WIN-EXP αποδίδει καλά ακόμα και με «θορυβώδεις» εκτιμήσεις των συναρτήσεων αυτών.
+        \item \textbf{Ανθεκτικότητα:} Ο WIN-EXP παραμένει αποτελεσματικός ακόμα και με θορυβώδεις εκτιμήσεις.
     \end{itemize}
     
 \end{frame}
 
-%--------%
-
 \section{Πειράματα και Σύνοψη}
-\begin{frame}{Πειράματα}
-    \textbf{Προσομοίωση:}
+\begin{frame}{Πειραματική Αξιολόγηση}
+    \textbf{Setup:} Weighted GSP, 20 πλειοδότες, 5.000 γύροι.
     \begin{itemize}
-        \item \textbf{Weighted General Second Price - GSP:} Ρυθμός "κλικ" (CTR) $U[0.1,1]$, $U[0.3,1]$ και $U[0.5,1]$
-        \item \textbf{Ιδιότητες:} 5.000 γύρους, 20 πλειοδότες, 3 θέσεις (slots) διαφήμισης.
-        \item \textbf{Τύποι αντιπάλων:} 1. Στοχαστικοί αντίπαλοι, 2. Προσαρμοστική αντίπαλοι EXP3, 3. Προσαρμοστική αντίπαλοι WIN-EXP.
-    \end{itemize}
-
-    \textbf{Αποτελέσματα:}
-    \begin{itemize}
-        \item O WIN-EXP υπερέχει σταθερά του EXP3 και στις τρεις παραπάνω κατηγορίες.
-        \item Η απόδοση του WIN-EXP είναι σταθερή σε χώρο με πολλές προσφορές.
-        \item Ο WIN-EXP δείχνει ανθεκτικότητα (robustness) σε δεδομένα με θόρυβο (noisy data).
+        \item \textbf{Αποτελέσματα:}
+            \begin{itemize}
+                \item Ο WIN-EXP υπερέχει σταθερά του EXP3 σε όλες τις κατηγορίες αντιπάλων.
+                \item Η απόδοση παραμένει σταθερή ακόμα και με πολύ πυκνή διακριτοποίηση (πολλά bins).
+                \item Υψηλή ανθεκτικότητα σε σενάρια με θορυβώδη δεδομένα (noisy data).
+            \end{itemize}
     \end{itemize}
 \end{frame}
 
 \subsection{Σύνοψη}
 \begin{frame}{Σύνοψη}
     \begin{itemize}
-        \item \textbf{Βασικό Εύρημα:} Η άγνωστη αξία στις δημοπρασίες είναι μια «καλοήθης» (benign) μορφή ελλιπούς πληροφορίας.
-        \item \textbf{Αποδοτικότητα:} Ο WIN-EXP επιτυγχάνει ρυθμούς μεταμέλειας σχεδόν ισοδύναμους με το σενάριο πλήρους πληροφόρησης.
-        \item \textbf{Aνθεκτικότητα:} Τα αποτελέσματα παραμένουν ισχυρά ακόμα και με θορυβώδη δεδομένα.
-        \item \textbf{Lipschitz:} <INSERT HERE RESULTS FROM 5, 6>
-        \item \textbf{Μελλοντική Έρευνα:} Επέκταση σε περιβάλλοντα όπου η αξία αποκαλύπτεται με καθυστέρηση ή εξαρτάται από τον ανταγωνισμό.
+        \item \textbf{Βασικό Εύρημα:} Η άγνωστη αξία στις δημοπρασίες αποτελεί μια καλοήθη (benign) μορφή ελλιπούς πληροφόρησης.
+        \item \textbf{Αποδοτικότητα:} Επίτευξη ρυθμών μεταμέλειας που προσεγγίζουν το σενάριο πλήρους πληροφόρησης (full information).
+        \item \textbf{Lipschitz και Διακριτοποίηση:} Η Lipschitz συνέχεια αποτελεί τη μαθηματική θεμελίωση για τη χρήση πλέγματος σημείων (bins), επιτρέποντας υψηλή ανάλυση προσφορών χωρίς υποβάθμιση του ρυθμού σύγκλισης.
+        \item \textbf{Πρακτική Αξία:} Άμεση εφαρμογή μέσω υπαρχόντων εργαλείων (Bid Simulators) ή στατιστικής εκτίμησης (Regression).
+        \item \textbf{Μελλοντική Έρευνα:} Επέκταση σε περιβάλλοντα με δυναμικά μεταβαλλόμενο ανταγωνισμό ή καθυστερημένη ανατροφοδότηση.
     \end{itemize}
 \end{frame}
 
-%--------%
+\section{Βιβλιογραφία}
+\begin{frame}[allowframebreaks]{Βιβλιογραφικές Αναφορές}
+    \bibliographystyle{plain}
+    \bibliography{references}
+\end{frame}
 
 \section{Τέλος}
 \begin{frame}[plain,c]
-\begin{center}
-\Huge Τέλος
-% \color{title}\small\vfill contact@petrousoft.com\\
-\end{center}
+    \begin{center}
+        \Huge Τέλος\\
+        \vspace{1cm}
+        \large Ευχαριστώ για την προσοχή σας!
+    \end{center}
 \end{frame}
-
-
-
 
 \end{document}
